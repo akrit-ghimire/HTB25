@@ -17,7 +17,7 @@ function App() {
   const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
   const [currentMessages, setCurrentMessages] = useState([]);
   const [currentSummary, setCurrentSummary] = useState("");
-  const [currentPage, setCurrentPage] = useState("Australia");
+  const [currentPage, setCurrentPage] = useState("home");
 
   const newsApiKey = "587a84574b4942cea09cbbc329b78e87";
 
@@ -182,18 +182,18 @@ function App() {
           <h1>WhizApps</h1>
           <p>The only financial tools you’ll ever need</p>
         </div>
-        <header className="App-header ">
+        <header className="App-header p-[120px] flex flex-row gap-2">
           <button
             onClick={() => setCurrentPage("hello")}
             type="submit"
-            className="flex flex-row items-center bg-primary rounded-lg px-4"
+            className="flex flex-row items-center bg-primary rounded-lg px-8 py-6 text-light"
           >
             CryptoWhiz
           </button>
           <button
             onClick={() => setCurrentPage("Australia")}
             type="submit"
-            className="flex flex-row items-center bg-primary rounded-lg px-4"
+            className="flex flex-row items-center bg-primary rounded-lg px-8 py-6 text-light"
           >
             MarketingWhiz
           </button>

@@ -37,7 +37,7 @@ const Sidebar = ({
   };
 
   return (
-    <div className="h-screen flex flex-col bg-dark text-light w-[400px] px-6 overflow-y-auto ">
+    <div className="h-screen flex flex-col bg-dark text-light px-6 overflow-y-auto ">
       <div className="flex flex-col justify-between items-center pt-16 gap-6">
         <div className="flex items-center flex-col gap-2">
           <svg
@@ -58,7 +58,7 @@ const Sidebar = ({
           <h1 className="text-2xl">CryptoWhiz</h1>
         </div>
 
-        <div className="h-full bg-grey-700 w-full flex flex-col gap-3">
+        <div className="h-full bg-grey-700 w-[250px] flex flex-col gap-3">
           <HomeButton onClick={onClick} />
           <SidebarItemContainer
             name={"Watchlist"}
@@ -77,7 +77,7 @@ const Sidebar = ({
                 />
               ))}
             <div
-              className="bg-dark_c cursor-pointer rounded-md px-2 py-1 overflow-hidden flex items-center justify-center"
+              className="bg-dark_c cursor-pointer rounded-md px-2 py-1 overflow-hidden flex justify-center"
               onClick={() => setIsModalOpen(true)}
             >
               <Plus />

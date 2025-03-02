@@ -12,7 +12,7 @@ const News = ({ article }) => {
         >
           <h3 className="text-xl font-semibold">{article?.title}</h3>
           <div className="flex flex-row gap-4">
-            <div className="w-full h-32 rounded-md overflow-hidden w-1/2">
+            <div className="w-full max-w-[100px] h-16 rounded-md overflow-hidden">
               <img
                 src={article?.urlToImage}
                 alt=""

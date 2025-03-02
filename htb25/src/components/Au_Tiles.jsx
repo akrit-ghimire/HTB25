@@ -123,11 +123,21 @@ const Tiles = ({
       <div className="flex flex-row gap-3">
         <div className="bg-light rounded-3xl px-6 py-12 w-1/2">
           <img src="src/assets/Screenshot_2025-03-02_091628.jpg" alt="" />
-          {/* <p className="text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-            voluptatem eveniet reprehenderit suscipit quas et odio, soluta
-            voluptas tenetur repellat.
-          </p> */}
+        </div>
+        <div className="bg-light rounded-3xl px-6 py-12 w-1/2 flex flex-col gap-2">
+          <p className="bg-primary text-light px-4 py-1 w-fit rounded-md">
+            Did you know!
+          </p>
+          <p className="font-bold">
+            The following species are directly and indirectly predators of
+            rodents:
+          </p>
+          <p>Snake : 100%</p>
+          <p>Fox : 100%</p>
+          <p>Canetoad : 90%</p>
+          <p>Dog : 90%</p>
+          <p>Cat : 80%</p>
+          <p>Bird : 54%</p>
         </div>
       </div>
     </div>
