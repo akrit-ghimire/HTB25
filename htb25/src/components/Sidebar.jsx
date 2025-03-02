@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import SidebarItem from "./SidebarItem";
 import SidebarItemContainer from "./SidebarItemContainer";
-const Sidebar = ({ watchlist, onSelectTokenObj }) => {
+import Modal from "./Modal";
+import { ChartNoAxesCombined, Eye, List, Plus, Search } from "lucide-react";
+import axios from "axios";
+import HomeButton from "./homeButton";
+
+const Sidebar = ({
+  watchlist,
+  trending,
+  onSelectTokenObj,
+  onAddWatchlist,
+  onClick,
+}) => {
+  //onclick is for click of home button
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.coingecko.com/api/v3/search?query=${searchInput}`
+      );
+      setSearchResults(response.data.coins);
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+
+  const handleAddToWatchlist = (token) => {
+    onAddWatchlist(token); // Add the selected token to the watchlist
+    setIsModalOpen(false); // Close the modal
+    setSearchInput(""); // Reset the search input
+    setSearchResults([]); // Clear the search results
+  };
+
   return (
-    <div className="h-screen bg-dark  text-light w-[360px] px-12">
+    <div className="h-screen flex flex-col bg-dark text-light w-[400px] px-6 overflow-y-auto ">
       <div className="flex flex-col justify-between items-center pt-16 gap-6">
         <div className="flex items-center flex-col gap-2">
           <svg
@@ -24,10 +58,38 @@ const Sidebar = ({ watchlist, onSelectTokenObj }) => {
           <h1 className="text-2xl">CryptoWhiz</h1>
         </div>
 
-        <div className="h-full bg-grey-700 w-full">
-          <SidebarItemContainer name={"Watchlist"}>
+        <div className="h-full bg-grey-700 w-full flex flex-col gap-3">
+          <HomeButton onClick={onClick} />
+          <SidebarItemContainer
+            name={"Watchlist"}
+            expandedOnOpen={true}
+            icon={<Eye />}
+          >
             {watchlist &&
               watchlist.map((coin, index) => (
+                <SidebarItem
+                  coin={coin}
+                  key={index}
+                  name={coin.item.name}
+                  icon={coin.item.small}
+                  tokenId={coin.item.id}
+                  onSelectTokenObj={onSelectTokenObj}
+                />
+              ))}
+            <div
+              className="bg-dark_c cursor-pointer rounded-md px-2 py-1 overflow-hidden flex items-center justify-center"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <Plus />
+            </div>
+          </SidebarItemContainer>
+          <SidebarItemContainer
+            name={"Trending"}
+            expandedOnOpen={false}
+            icon={<ChartNoAxesCombined />}
+          >
+            {trending &&
+              trending.map((coin, index) => (
                 <SidebarItem
                   coin={coin}
                   key={index}
@@ -40,6 +102,47 @@ const Sidebar = ({ watchlist, onSelectTokenObj }) => {
           </SidebarItemContainer>
         </div>
       </div>
+
+      {/* Modal for Adding to Watchlist */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <div className="flex flex-col gap-4 ">
+          <div className="flex flex-row gap-1">
+            <input
+              type="text"
+              class="w-full px-4 py-3 bg-dark_c rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Search for a Crypto"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-primary text-white px-3 rounded-lg"
+            >
+              <Search />
+            </button>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-4">
+            {searchResults.slice(0, 5).map((coin) => (
+              <div
+                key={coin.id}
+                className="flex items-center justify-between px-4 py-1 cursor-pointer hover:bg-dark_c outline outline-dark_c rounded-lg"
+                onClick={() => handleAddToWatchlist(coin)}
+              >
+                <div className="flex items-center gap-2 py-3">
+                  <img
+                    src={coin.thumb}
+                    alt={coin.name}
+                    className="w-6 h-6 rounded-full"
+                  />
+                  <span>{coin.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -7,25 +7,26 @@ import {
   List,
 } from "lucide-react";
 
-const SidebarItemContainer = ({ children, name }) => {
-  const [isOpen, setIsOpen] = useState(true); //open default
+const SidebarItemContainer = ({ children, name, expandedOnOpen, icon }) => {
+  const [isOpen, setIsOpen] = useState(expandedOnOpen); //open default
   const handleCollapseClick = () => {
     setIsOpen(!isOpen);
   };
   return (
     <>
-      <div className="flex justify-between w-full pt-4 pb-2">
-        <div className="flex gap-2 px-2">
-          <List size={24} className="rounded-full" />
-          <h2 className="rounded-lg ">{name}</h2>
-        </div>
-        <button
-          className="hover:bg-dark_c rounded-full cursor-pointer"
-          onClick={() => handleCollapseClick()}
-        >
+      <button
+        className="hover:bg-dark_c rounded-xl cursor-pointer w-full pr-4"
+        onClick={() => handleCollapseClick()}
+      >
+        <div className="flex justify-between w-full pt-2 pb-2">
+          <div className="flex items-center gap-2 px-2">
+            {icon}
+            <h2 className="rounded-lg ">{name}</h2>
+          </div>
+
           {isOpen ? <ChevronUp /> : <ChevronDown />}
-        </button>
-      </div>
+        </div>
+      </button>
 
       <div className="pl-4">
         <div
