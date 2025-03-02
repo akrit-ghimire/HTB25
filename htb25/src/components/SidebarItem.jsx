@@ -1,10 +1,23 @@
 import React from "react";
 
-const SidebarItem = ({ name, icon, active }) => {
+const SidebarItem = ({
+  coin,
+  token,
+  name,
+  tokenId,
+  icon,
+  active,
+  onSelectTokenObj,
+}) => {
   return (
-    <div className="flex text-md rounded-md p-1 w-full gap-3 hover:bg-dark_c cursor-pointer">
-      <img className="w-6 h-6 rounded-full" src={icon} />
-      <div className="w-max text-nowrap">{name}</div>
+    <div
+      className="hover:bg-dark_c cursor-pointer  rounded-md px-2 overflow-hidden"
+      onClick={() => onSelectTokenObj(coin)}
+    >
+      <div className="flex text-md rounded-md px-2 py-1 gap-4 w-max">
+        <img className="w-6 h-6 rounded-full" src={icon} />
+        <div className="w-full text-nowrap ">{name}</div>
+      </div>
     </div>
   );
 };

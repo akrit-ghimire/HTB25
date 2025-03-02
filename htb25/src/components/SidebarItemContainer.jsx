@@ -29,7 +29,7 @@ const SidebarItemContainer = ({ children, name }) => {
 
       <div className="pl-4">
         <div
-          className={`flex flex-col gap-2 pl-2 border-l border-light_c border-dashed w-auto ${
+          className={`flex flex-col gap-2 pl-2 border-l border-dark_c_2 w-auto ${
             isOpen
               ? ""
               : "h-0  overflow-hidden transition-transform duration-500"

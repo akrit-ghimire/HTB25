@@ -3,7 +3,7 @@ import React from "react";
 const Message = ({ type, text }) => {
   if (type === "bot") {
     return (
-      <div className="bg-light p-3 rounded-lg">
+      <div className="bg-light p-3 rounded-lg w-full">
         <p className="font-bold">CryptoWhiz</p>
         <p>{text}</p>
       </div>
