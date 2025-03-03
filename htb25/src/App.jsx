@@ -19,7 +19,7 @@ function App() {
   const [currentSummary, setCurrentSummary] = useState("");
   const [currentPage, setCurrentPage] = useState("home");
 
-  const newsApiKey = "587a84574b4942cea09cbbc329b78e87";
+  const newsApiKey = "0585f4e57b8c4cf99e7a46bff77345a7";
 
   const [articles, setArticles] = useState([]);
 
@@ -177,28 +177,50 @@ function App() {
 
   if (currentPage === "home") {
     return (
-      <>
-        <div className="w-full h-full p-[120px] text-light">
-          <h1>WhizApps</h1>
-          <p>The only financial tools you’ll ever need</p>
+      //HomePage/LandingPage
+      <div className="flex flex-col h-screen">
+        <div className="w-full h-full p-[120px] text-light gap-3 flex flex-col">
+          <h1 className="text-4xl font-light"> WhizApps</h1>
+          <p className=" text-xl text-gray-500 font-extralight">
+            The only financial tools you’ll ever need
+          </p>
         </div>
-        <header className="App-header p-[120px] flex flex-row gap-2">
+        <header className="App-header flex bg-primary flex-row gap-2 w-full items-center justify-evenly h-32 rounded-t-xl">
+          <div className="flex items-center justify-center text-light_c hover:text-light cursor-pointer h-4 p-2">
+            Our Ethos
+          </div>
+          <div className="flex items-center justify-center text-light_c hover:text-light cursor-pointer h-4 p-2">
+            Contact Us
+          </div>
+          <div className="flex items-center justify-center text-light_c hover:text-light cursor-pointer t h-4 p-2">
+            {" "}
+            Tools
+          </div>
+        </header>
+
+        <div className="bg-light_c flex  h-full items-center justify-evenly px-48 gap-16">
           <button
             onClick={() => setCurrentPage("hello")}
             type="submit"
-            className="flex flex-row items-center bg-primary rounded-lg px-8 py-6 text-light"
+            className="flex flex-col items-center justify-center bg-light rounded-lg px-8 py-6 h-64 w-64 text-xl font-light  cursor-pointer hover:bg-light/80 shadow-sm "
           >
-            CryptoWhiz
+            <h2>CryptoWhiz</h2>
+            <p className="text-sm font-light text-gray-400">
+              A cryptocurrency analaytics tool with built in AI assistant
+            </p>
           </button>
           <button
             onClick={() => setCurrentPage("Australia")}
             type="submit"
-            className="flex flex-row items-center bg-primary rounded-lg px-8 py-6 text-light"
+            className="flex flex-col items-center justify-center bg-light rounded-lg px-8 py-6 h-64 w-64 text-xl font-light  cursor-pointer hover:bg-light/80 shadow-sm "
           >
-            MarketingWhiz
+            <h2>MarketingWhiz</h2>
+            <p className="text-sm font-light text-gray-400">
+              Providing insightful relationships into markets around the world
+            </p>
           </button>
-        </header>
-      </>
+        </div>
+      </div>
     );
   } else if (currentPage === "Australia") {
     return (

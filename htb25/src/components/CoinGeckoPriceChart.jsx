@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const CoinGeckoWidget = ({
   coinId = "bitcoin", // Default to Bitcoin
-  currency = "gbp", // Default to GBP
+  currency = "usd", // Default to GBP
   locale = "en", // Default to English
 }) => {
   useEffect(() => {

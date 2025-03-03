@@ -11,7 +11,7 @@ const Sidebar = ({
   trending,
   onSelectTokenObj,
   onAddWatchlist,
-  onClick,
+  onHomeClick,
 }) => {
   //onclick is for click of home button
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +59,7 @@ const Sidebar = ({
         </div>
 
         <div className="h-full bg-grey-700 w-[250px] flex flex-col gap-3">
-          <HomeButton onClick={onClick} />
+          <HomeButton onClick={onHomeClick} />
           <SidebarItemContainer
             name={"Watchlist"}
             expandedOnOpen={true}
